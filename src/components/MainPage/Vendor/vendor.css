@@ -1,0 +1,48 @@
+.App {
+  text-align: left;
+}
+/* create vendor css */
+.form-control {
+  border-color: #3c8dbc !important;
+  box-shadow: none;
+  font-size: 15px;
+  height: 44px;
+}
+.custom_modal .modal-footer {
+  border: 0;
+  justify-content: center;
+  padding: 0 30px 30px;
+}
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: calc(0.3rem - 1px);
+  border-bottom-left-radius: calc(0.3rem - 1px);
+}
+.custom_group {
+  display: flex;
+}
+.title_vendor {
+  margin-right: 46px;
+  padding-top: 10px;
+  max-width: 25px;
+}
+.custom_modal_size {
+  max-width: 1120px;
+}
+.SubmitFooter {
+  display: flex;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.SubmitFooter .custombtn {
+  margin-right: 16px;
+}
+.custom_danger_button {
+  background: #d0455e;
+  border: 1px solid #d24962;
+}
