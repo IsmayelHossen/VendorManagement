@@ -30,27 +30,35 @@ const PNLeftPart = () => {
     <>
       <h3>Service List</h3>
       {/* Search functionality */}
-      <form>
-        <input type="text"></input>
-      </form>
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" class="form-control" placeholder="Search" />
+      </div>
       {/* Search functionality end*/}
 
       {/* service provide by vendor start */}
-      <div className="container">
-        <h2>Abc Company</h2>
-        <div className="row">
-          <div className="col-md-6">
-            <p>Service Id:123</p>
-            <h4>Date:01/2/2010</h4>
+
+      {Provider.slice(0, 10).map((row, index) => (
+        <div className="Vendor_Status">
+          <div className="Vendor_Status_heading">
+            <h6>Abc Company</h6>
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
           </div>
-          <div className="col-md-6">
-            <p>Status:pending</p>
-            <p>Amount:1000Tk</p>
+
+          <div className="row displayflex">
+            <div className="col-md-6">
+              <p>Service Id:{row.id}</p>
+              <h4>Date:01/2/2010</h4>
+            </div>
+            <div className="col-md-6">
+              <p>Status:pending</p>
+              <p>Amount:1000Tk</p>
+            </div>
           </div>
 
           {/* service provide by vendor  end */}
         </div>
-      </div>
+      ))}
     </>
   );
 };

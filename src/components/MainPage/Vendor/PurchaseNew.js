@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import "../../../index.css";
 import "../Vendor/vendor.css";
 import PNLeftPart from "./PNLeftPart";
+import PNRightPart from "./PNRightPart";
 const PurchaseNew = () => {
   const [Edit_delete, SetEditDelete] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
@@ -29,18 +30,14 @@ const PurchaseNew = () => {
   };
   const DemoDataDelete = (index) => {
     console.log(Vendor_data);
-    if (Vendor_data) {
-      setIsDelete(true);
-    } else {
-      setIsDelete(false);
-    }
-    alert(index);
+
+    // alert(index);
     const arrarydata = Vendor_data;
     var Values = arrarydata.indexOf(index);
 
     arrarydata.splice(index, 1);
 
-    SetVendorData([...Vendor_data, arrarydata]);
+    SetVendorData([...arrarydata]);
   };
   // FinalSubmit functionality
 
@@ -59,21 +56,20 @@ const PurchaseNew = () => {
             <div className="row">
               <div className="col-sm-12">
                 <h3 className="page-title text-start">Vendor Status</h3>
+                <button
+                  type="button"
+                  class="btn btn-primary float-right"
+                  style={{ marginBottom: "5px" }}
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  <i class="fa fa-plus"></i> Add New
+                </button>
               </div>
             </div>
           </div>
 
           {/* /Page Header */}
-
-          <button
-            type="button"
-            class="btn btn-primary float-right"
-            style={{ marginBottom: "10px" }}
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            <i class="fa fa-plus"></i> Add
-          </button>
 
           <div
             class="modal fade "
@@ -218,7 +214,7 @@ const PurchaseNew = () => {
                             )}
                           </thead>
                           <tbody>
-                            {Vendor_data != null &&
+                            {Vendor_data.length != 0 &&
                               Vendor_data.map((row, index) => (
                                 <>
                                   <tr>
@@ -252,10 +248,13 @@ const PurchaseNew = () => {
           {/* Purchase Left Side */}
           <div className="row">
             <div className="col-md-4">
-              <PNLeftPart />
+              <div className="Purchase_Left_Side">
+                <PNLeftPart />
+              </div>
             </div>
-
-            <div className="col-md-8"></div>
+            <div className="col-md-8">
+              <PNRightPart />
+            </div>
           </div>
         </div>
         {/* /Page Content */}
