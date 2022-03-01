@@ -6,19 +6,21 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { GetIndividual_VendorActive_data } from "../Vendor/ApiCall";
 import "../../../index.css";
 import "../Vendor/vendor.css";
 import PNLeftPart from "./PNLeftPart";
 import PNRightPart from "./PNRightPart";
+import { API_URL } from "./CommonUrlApi";
 const PurchaseNew = () => {
   const [Edit_delete, SetEditDelete] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
   const [isDelete, setIsDelete] = useState(true);
+  const [vendorStatus_details_open, setVendorStatus_details_open] =
+    useState(false);
+  const [GetVendorActiveData, setGetVendorActiveData] = useState({});
   const { register, handleSubmit, watch, reset } = useForm();
-  useEffect(() => {
-    console.log(Vendor_data);
-  }, []);
+
   const onSubmit = (data) => {
     if (!data.Firstname) {
       alert("Field must not be empty");
@@ -39,8 +41,44 @@ const PurchaseNew = () => {
 
     SetVendorData([...arrarydata]);
   };
-  // FinalSubmit functionality
+  // Open vendor_active_data functionality
+  const [getId, setGetId] = useState(1);
+  console.log("i am here");
+  console.log(getId);
+  // useEffect(() => {
+  //   const getUsers = () => {
+  //     fetch(`https://jsonplaceholder.typicode.com/posts/${getId}`)
+  //       .then((res) => {
+  //         // You have to send it, as I have done below
+  //         if (res.status >= 400) {
+  //           throw new Error("Server responds with error!");
+  //         }
+  //         return res.json();
+  //       })
+  //       .then(
+  //         (users) => {
+  //           setGetVendorActiveData(users);
 
+  //           console.log(users);
+  //           console.log(getId);
+  //         },
+
+  //         (err) => {}
+  //       );
+  //   };
+  //   getUsers();
+  // }, [getId]);
+  const OpenActiveDetails = async (id) => {
+    //alert(id);
+    // setGetId(id);
+    console.log(id);
+    const response = await GetIndividual_VendorActive_data(id);
+    if (response) {
+      console.log(response.data);
+      setGetVendorActiveData(response.data);
+      setVendorStatus_details_open(true);
+    }
+  };
   return (
     <>
       <Helmet>
@@ -249,12 +287,14 @@ const PurchaseNew = () => {
           <div className="row">
             <div className="col-md-4">
               <div className="Purchase_Left_Side">
-                <PNLeftPart />
+                <PNLeftPart activeStatusDetail={OpenActiveDetails} />
               </div>
             </div>
-            <div className="col-md-8">
-              <PNRightPart />
-            </div>
+            {vendorStatus_details_open && (
+              <div className="col-md-8">
+                <PNRightPart PassVebdor_Active_data={GetVendorActiveData} />
+              </div>
+            )}
           </div>
         </div>
         {/* /Page Content */}

@@ -66,13 +66,29 @@
   max-width: 98%;
   margin: 0px auto;
   margin-bottom: 6px;
+  padding-left: 6px;
+  padding-top: 8px;
 }
+#Active_Vendor_Status {
+  color: #fbfbfb;
+  background: #736fc1;
+}
+
 .Vendor_Status .Vendor_Status_heading {
   display: flex;
 }
-element {
-  padding-top: 13px;
-  padding-left: 38px;
+.Vendor_Status_heading .Vendor_Status_heading_h6 {
+  margin: 0 auto;
+  display: block;
+  color: #b56c2c;
+}
+.checkmark {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-right: 10px;
+  color: green;
+}
+.Vendor_Status_heading_left_data {
 }
 .searchInputField .search {
   border-width: 3px;
@@ -101,17 +117,26 @@ element {
   pointer-events: none;
   color: #aaa;
 }
+.Purchase_Left_Side .headingof_left_side {
+  text-align: center;
+  font-size: initial;
+  font-weight: 600;
+}
 .Vendor_Status_right_side {
   margin: 0px;
   padding: 0px;
   margin-left: -18px;
 }
 .Vendor_Status_right_side .Vendor_Status_right_side_header {
-  background: #f7f7f7;
+  background: #7c77ccfc;
   padding: 0px 0px;
-  margin-left: -4px;
+  margin-left: 0px;
   box-shadow: 0px 1px 2px #8c8d91;
   padding: 5px 3px;
+  color: #f7f7f7;
+}
+.details_vendor_status_data {
+  margin-top: 0.3em;
 }
 /* media design */
 @media only screen and (max-width: 600px) {

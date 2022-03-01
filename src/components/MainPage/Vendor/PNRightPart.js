@@ -9,23 +9,18 @@ import { useForm } from "react-hook-form";
 import { ServiceProviders } from "../Vendor/ApiCall";
 import "../../../index.css";
 import "../Vendor/vendor.css";
-const PNRightPart = () => {
+const PNRightPart = (props) => {
+  console.log(props);
   const [Provider, SetProvider] = useState([]);
+  const [Active_individual_data, setActive_individual_data] = useState({});
   const [error, SetError] = useState(false);
+  let i = 1;
   useEffect(() => {
-    GetServiceProviderData();
+    setActive_individual_data(props.PassVebdor_Active_data);
+    alert(i++);
+    console.log(i++);
   }, []);
-  const GetServiceProviderData = async () => {
-    SetError(false);
-    try {
-      const response = await ServiceProviders();
-      SetProvider(response.data);
-      console.log(response.data);
-    } catch (error) {
-      SetError(true);
-      console.log(error);
-    }
-  };
+
   return (
     <>
       {/* Search functionality end*/}
@@ -33,19 +28,20 @@ const PNRightPart = () => {
       {/* service provide by vendor start */}
 
       <div className="Vendor_Status_right_side">
-        <div className="row Vendor_Status_right_side_header">
-          <div className="col-md-6">
-            <p>Service Id:</p>
-            <h4>Date:01/2/2010</h4>
-          </div>
-          <div className="col-md-6">
-            <p>Status:pending</p>
-            <p>Amount:1000Tk</p>
+        <div className="Vendor_Status_right_side_header">
+          <div className="row ">
+            <div className="col-md-6">
+              <p>Service Id:{Active_individual_data.userId}</p>
+              <h4>Date:01/2/2010</h4>
+            </div>
+            <div className="col-md-6">
+              <p>Status:pending</p>
+              <p>Amount:1000Tk</p>
+            </div>
           </div>
         </div>
-
         {/* service provide by vendor  end */}
-        <div className="">
+        <div className="details_vendor_status_data">
           {/* table status */}
           <div class="table-responsive ">
             <table class="table table-bordered">
