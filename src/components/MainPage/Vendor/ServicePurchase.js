@@ -29,6 +29,7 @@ const ServicePurchase = () => {
   const [EditModal, setEditModa] = useState(false);
   const [Individual_data, setIndividual_data] = useState("");
   const [UpdateDataFound, setUpdateDataFound] = useState({});
+  const [onchangeData, setOnchangeData] = useState("");
   //let getLoginData = JSON.parse(localStorage.getItem("VendorData"));
   //let getLoginData = [];
   const {
@@ -55,7 +56,7 @@ const ServicePurchase = () => {
     // localStorage.setItem("VendorData", JSON.stringify(Vendor_data));
   };
   const onSubmit1 = (data) => {
-    alert(JSON.stringify(data));
+    alert(data.test);
     console.log(data);
   };
   //Action edit,delete
@@ -63,6 +64,9 @@ const ServicePurchase = () => {
     console.log(name);
     setActionButton(true);
   };
+  useEffect(() => {
+    console.log(onchangeData);
+  });
   //delete vendor
   const Delete_vendor = (id) => {
     const arrarydata = Vendor_data;
@@ -446,7 +450,7 @@ const ServicePurchase = () => {
                     id="exampleModalLabel"
                     style={{ fontWeight: "600", color: "#5265ac" }}
                   >
-                    <i class="fa fa-plus"></i> Update Vendor
+                    <i class="fa fa-plus"></i> Update Vendor{onchangeData}
                   </h5>
                   <button
                     type="button"
@@ -608,25 +612,44 @@ const ServicePurchase = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="">
-                      <div class="form-group custom_group">
-                        <span class="title_vendor">
-                          <span style={{ color: "red" }}>*</span>Name
-                        </span>
-                        <input
-                          type="number"
-                          class="form-control"
-                          placeholder="Write Id"
-                          id="validationDefault07"
-                          defaultValue={UpdateDataFound.id}
-                          {...register1("id", {
-                            // required: true,
-                          })}
-                        />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div class="form-group custom_group">
+                          <span class="title_vendor">
+                            <span style={{ color: "red" }}>*</span>Name
+                          </span>
+                          <input
+                            type="number"
+                            class="form-control"
+                            placeholder="Write Id"
+                            id="validationDefault07"
+                            defaultValue={UpdateDataFound.id}
+                            {...register1("id", {
+                              // required: true,
+                            })}
+                          />
+                        </div>
+                        {errors2.id && (
+                          <span className="errorsMsg">id is required</span>
+                        )}
                       </div>
-                      {errors2.id && (
-                        <span className="errorsMsg">id is required</span>
-                      )}
+                      <div className="col-md-6">
+                        <div class="form-group custom_group">
+                          <span class="title_vendor">
+                            <span style={{ color: "red" }}>*</span>Date
+                          </span>
+                          <input type="date" {...register1("test", {})} />
+                        </div>
+                        {errors2.date1 && (
+                          <span className="errorsMsg">Date is required</span>
+                        )}
+                      </div>
+                      <input
+                        type="number"
+                        {...register("test", {
+                          setValueAs: (v) => setOnchangeData(v),
+                        })}
+                      />
                     </div>
                     <div className="SubmitFooter">
                       <button type="submit" class="Button_success">

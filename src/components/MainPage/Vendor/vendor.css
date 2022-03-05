@@ -246,6 +246,13 @@ body {
   padding-left: 2.375rem;
   max-width: 99%;
 }
+.has-search .form-control:focus {
+  color: #110e0e;
+  background-color: #fdfdfd;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0px 0px 4px 0.2rem rgba(9, 35, 68, 0.25);
+}
 
 .has-search .form-control-feedback {
   position: absolute;

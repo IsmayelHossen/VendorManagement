@@ -178,7 +178,7 @@ const PurchaseNew = () => {
                       {/* vendor add product form */}
                       <div className="selectVendor">
                         {/* select Vendor form start */}
-                        <div class="form-floating mt-2 ">
+                        {/* <div class="form-floating mt-2 ">
                           {SelectVendor != 0 && (
                             <>
                               <input
@@ -202,10 +202,39 @@ const PurchaseNew = () => {
                               </>
                             </select>
                           )}
-                        </div>
+                        </div> */}
                         {/* select Vendor form end */}
                       </div>
                       <form onSubmit={handleSubmit(onSubmit)}>
+                        <div class="form-floating mt-2 ">
+                          {SelectVendor != 0 && (
+                            <>
+                              <input
+                                className="form-control"
+                                defaultValue={SelectVendor}
+                                {...register("Vendor_select")}
+                                readOnly
+                              />
+                            </>
+                          )}
+                          {SelectVendor == 0 && (
+                            <select
+                              class=" form-control Vendor-form-control"
+                              defaultValue={SelectVendor}
+                              {...register("Vendor_select", {
+                                onChange: (e) =>
+                                  setSelectVendor(e.target.value),
+                              })}
+                            >
+                              <>
+                                <option value="Abc Company">Abc Company</option>
+                                <option value="CDF Company">CDF Company</option>
+                                <option value="GHI Company">GHI Company</option>
+                                <option value="Monir">Monir</option>
+                              </>
+                            </select>
+                          )}
+                        </div>
                         <div class="form-floating mt-2">
                           <input
                             type="text"
@@ -299,6 +328,7 @@ const PurchaseNew = () => {
                           <thead>
                             {Vendor_data != null && (
                               <tr>
+                                <th>Comany</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
@@ -315,6 +345,7 @@ const PurchaseNew = () => {
                               Vendor_data.map((row, index) => (
                                 <>
                                   <tr>
+                                    <td>{row.Vendor_select}</td>
                                     <td key={index}>{row.Firstname}</td>
                                     <td>{row.Email}</td>
                                     <td>{row.Mobile}</td>
