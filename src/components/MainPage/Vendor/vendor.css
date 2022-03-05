@@ -1,0 +1,307 @@
+.App {
+  text-align: justify;
+}
+body {
+  background-color: #fff;
+  font-family: "Old Standard TT,Oswald,Montserrat,Poppins";
+}
+/* create vendor css */
+.form-control {
+  border-color: #3c8dbc !important;
+  box-shadow: none;
+  font-size: 15px;
+  height: 44px;
+}
+/* custom button design */
+
+.Button_primary span,
+.Button_success span,
+.Button_Danger1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.Button_primary:hover span,
+.Button_success:hover span,
+.Button_Danger1:hover span {
+  padding-right: 10px;
+}
+.Button_primary:hover span:after,
+.Button_success:hover span:after,
+.Button_Danger1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.Button_Danger1 {
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 0.575rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  background: #ca1818;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+}
+
+.Button_Danger1:hover {
+  background: #f00606;
+  border: 1px solid #ea2a3c;
+  /* border-radius: 51px; */
+  box-shadow: 0x 1px 2x #455;
+  box-shadow: 0px 2px 3px #2a435b;
+}
+.Button_success {
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 0.575rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  background: #415e9b;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+}
+.Button_success:hover {
+  background: #415e9b;
+  border: 1px solid #323e6f;
+  /* border-radius: 51px; */
+  box-shadow: 0x 1px 2x #455;
+  box-shadow: 0px 2px 3px #2a435b;
+}
+.Button_primary {
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 0.575rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  background: #1dae5c;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+}
+.Button_primary:hover {
+  background: #1dae5c;
+  border: 1px solid #1dae5c;
+
+  box-shadow: 0x 1px 2x #455;
+  box-shadow: 0px 2px 3px #2a435b;
+}
+.Vendor-form-control:focus {
+  color: #6a0c0c;
+  background-color: #f4f2f2;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(229, 233, 238, 0.25);
+}
+
+.custom_group {
+  display: flex;
+}
+.title_vendor {
+  margin-right: 46px;
+  padding-top: 10px;
+  max-width: 25px;
+}
+.custom_modal_size {
+  max-width: 1120px;
+}
+.SubmitFooter {
+  display: flex;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.SubmitFooter .custombtn {
+  margin-right: 16px;
+}
+.custom_danger_button {
+  background: #d0455e;
+  border: 1px solid #d24962;
+}
+/* end */
+.errorsMsg {
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: red;
+}
+.Purchase_Left_Side {
+  border-right: 1px solid #eaeaea;
+  margin: 0px;
+  padding: 0px;
+  /* box-shadow: 0px 1px 2px #d9d9d9; */
+  /* padding-left: 9px; */
+  padding: 2px 2px;
+}
+.Vendor_Status {
+  border: 1px solid #f4f4f4;
+  border-radius: 4px;
+  margin: 2px -10px;
+  box-shadow: 1px 1px 3px 1px #f9f9f9;
+  /* padding: 5px 1px; */
+  padding-top: 5px;
+  background: #fff;
+  max-width: 98%;
+  margin: 0px auto;
+  margin-bottom: 2px;
+  padding-left: 6px;
+  padding-top: 8px;
+}
+/* custom card */
+
+.product_card_left_side {
+  border: 1px solid #ededed;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 5px;
+}
+.card_body_custom {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0.4em;
+}
+.card_title_custom {
+  color: #930909;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  margin-left: 0.1em;
+}
+/* custom card end */
+.Product_status_wrapper {
+  color: #1e0a0a;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  -webkit-text-decoration-skip: objects;
+}
+.Product_status_wrapper:hover {
+  color: hsl(352, 100%, 63%);
+}
+.Service_list_vendor {
+  border: 2px solid #e6e3e3;
+  padding-top: 4px;
+  padding-left: 4px;
+  padding-right: 2px;
+  margin-bottom: 7px;
+  border-bottom: 0px;
+  box-shadow: 1px 1px 3px 1px #f2f2f2;
+  padding-bottom: 6px;
+  background: #fff;
+}
+#Active_Vendor_Status {
+  color: #731313;
+  background: #f2f2f2;
+}
+
+.Vendor_Status .Vendor_Status_heading {
+  display: flex;
+}
+.Vendor_Status_heading .Vendor_Status_heading_h6 {
+  margin: 0 auto;
+  display: block;
+  color: #b56c2c;
+}
+.checkmark {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-right: 10px;
+  color: green;
+}
+.Vendor_Status_heading_left_data {
+}
+.Vendor_Status_left_side_search_title {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.searchInputField .search {
+  border-width: 3px;
+  border-right-width: 1px;
+  margin-bottom: 8px;
+}
+.control_search {
+  border-color: #b8bec1 !important;
+  box-shadow: none;
+  font-size: 15px;
+  height: 44px;
+}
+.has-search .form-control {
+  padding-left: 2.375rem;
+  max-width: 99%;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+.Purchase_Left_Side .headingof_left_side {
+  text-align: center;
+  font-size: initial;
+  font-weight: 600;
+}
+.Vendor_Status_right_side {
+  margin: 0px;
+  padding: 0px;
+  margin-left: -18px;
+}
+.Vendor_Status_right_side .Vendor_Status_right_side_header {
+  padding: 0px 0px;
+  margin-left: 0px;
+  box-shadow: 0px 1px 2px #8c8d91;
+  padding: 5px 3px;
+  font-weight: 600;
+  color: #731313;
+  background: #f2f2f2;
+}
+.details_vendor_status_data {
+  margin-top: 0.3em;
+}
+/* media design */
+@media only screen and (max-width: 600px) {
+  .create_vendor_page_title {
+    text-align: center;
+  }
+  .Purchase_Left_Side {
+    border-right: 0px solid #eaeaea;
+    margin: 0px;
+    padding: 0px;
+    /* box-shadow: 0px 1px 2px #d9d9d9; */
+    /* padding-left: 9px; */
+    padding: 2px 2px;
+  }
+  .displayflex {
+    display: flex;
+    text-align: center;
+  }
+  .Vendor_Status .Vendor_Status_heading {
+    text-align: center;
+  }
+  .Vendor_Status_right_side {
+    margin: 5px;
+    padding: 0px;
+  }
+}
