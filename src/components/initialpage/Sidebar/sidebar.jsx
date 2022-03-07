@@ -33,7 +33,7 @@
             <li className={pathname.includes('/') ?"active" :""}> 
               <Link to = "/"><i className="la la-home" /> <span> Dashboard</span></Link>
             </li>
-                {/* Vendor */}
+                {/* add Vendor */}
                 <li className="submenu text-start">
               <a href="#"><i className="la la-gift" /> <span> Vendor</span> <span className="menu-arrow" /></a>
               <ul style={{display: 'none'}}>
@@ -42,16 +42,49 @@
                   Add  Vendor
                   </Link>
                 </li>
+               
+              </ul>
+            </li>
+            {/* add product */}
+            <li className="submenu text-start">
+              <a href="#"><i className="fa fa-cart-plus " /> <span> Product</span> <span className="menu-arrow" /></a>
+              <ul style={{display: 'none'}}>
+              
                 <li>
                   <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/product/status">
-                    Product Status
+                   Add Product 
                   </Link>
                 </li>
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/status">
-                    Service Status
+                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/product/order">
+                  Product Ordered 
                   </Link>
                 </li>
+                
+               
+
+               
+              </ul>
+            </li>
+            
+
+            {/* add service */}
+            <li className="submenu text-start">
+              <a href="#"><i className="la la-gift" /> <span> Service</span> <span className="menu-arrow" /></a>
+              <ul style={{display: 'none'}}>
+              
+                
+                <li>
+                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/status">
+                   Add Service 
+                  </Link>
+                </li>
+                <li>
+                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/order">
+                    Service Ordered
+                  </Link>
+                </li>
+               
 
                
               </ul>

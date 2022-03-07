@@ -22,3 +22,14 @@ export const GetVendor_individualData_update = async (id) => {
     return res;
   });
 };
+
+export const OrderedData = async () => {
+  return await Axios.get(`${API_URL}posts`).then((res) => {
+    return res;
+  });
+};
+export const GetDeleiveryProduct = async (id) => {
+  return await Axios.get(`${API_URL}posts/${id}`).then((res) => {
+    return res;
+  });
+};

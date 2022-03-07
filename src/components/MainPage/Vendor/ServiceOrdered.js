@@ -22,7 +22,7 @@ import "../Vendor/vendor.css";
 import PUBLIC_URL from "../Vendor/CommonUrlApi";
 import VendorEdit from "./VendorEdit";
 import { GetVendor_individualData_update } from "../Vendor/ApiCall";
-const Create_Vendor = () => {
+const ServiceOrdered = () => {
   const [DataLoader, setDataLoader] = useState(true);
   const [Edit_delete, SetEditDelete] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
@@ -217,346 +217,26 @@ const Create_Vendor = () => {
         <div className="content container-fluid">
           {/* Page Header */}
           <div class="">
-            <div class="card-header1">
-              <div className="">
-                <h4 className="text-center mx-auto mb-3">
-                  Welcome to Vendor Management
-                </h4>
-              </div>
+            <div class="card-header">
               {/* header */}
-              <div className="d-flex justify-content-between align-items-center Page_header_title_search">
-                <div
-                  class="form-group has-search"
-                  style={{ marginBottom: "0px" }}
-                >
-                  <span class="fa fa-search form-control-feedback"></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    // value={searchStatus}
-                    name="searchStatus"
-                    placeholder="Search"
-                    // onChange={(e) => setSearchStatus(e.target.value)}
-                  />
+              <div className="row">
+                <div className="col-md-12">
+                  <h3
+                    className="card-title  product_card_title"
+                    style={{
+                      marginBottom: "0px",
+                      marginTop: "17px !important",
+                    }}
+                  >
+                    Service Ordered Status
+                  </h3>
                 </div>
-                <button
-                  type="button"
-                  class="Button_success float-right"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
-                >
-                  <i class="fa fa-plus"></i> <span>Add New</span>
-                </button>
+                <div className="col-md-6"></div>
               </div>
             </div>
-            <div class="card-body1">
+            <div class="card-body">
               {/* /Page Header */}
-              <div
-                class="modal custom-modal fade "
-                id="exampleModal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div
-                  class="modal-dialog modal-lg custom_modal_size"
-                  role="document"
-                >
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 style={{ color: "rgba(17, 123, 108, 0.85)" }}>
-                        <i class="fa fa-plus"></i> Add Vendor
-                      </h5>
-                      <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body ">
-                      <div className="row Product_add">
-                        {/* vendor form */}
-                        <form
-                          onSubmit={handleSubmit(onSubmit)}
-                          className=" g-3 needs-validation"
-                          novalidate
-                        >
-                          <div className="row">
-                            <div className="col-md-6 ">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">
-                                  <span style={{ color: "red" }}>*</span>
-                                  Company/Person Name
-                                </p>
-                                <input
-                                  type="text"
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Write name"
-                                  id="validationDefault01"
-                                  {...register("CompanyName", {
-                                    required: true,
-                                  })}
-                                />
-                              </div>
 
-                              {errors.CompanyName && (
-                                <p className="errorsMsg">
-                                  Company Name Required
-                                </p>
-                              )}
-                            </div>
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor"> Contact Name</p>
-                                <input
-                                  type="text"
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Contact Name"
-                                  id="validationDefault02"
-                                  {...register("ContactName", {
-                                    required: true,
-                                  })}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">
-                                  <span style={{ color: "red" }}>*</span>Contact
-                                  Title
-                                </p>
-                                <input
-                                  type="text"
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Write Contact Title"
-                                  id="validationDefault01"
-                                  {...register("ContactTitle", {
-                                    required: true,
-                                  })}
-                                />
-                              </div>
-
-                              {errors.ContactTitle && (
-                                <p className="errorsMsg">
-                                  Contact Title Required
-                                </p>
-                              )}
-                            </div>
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">
-                                  {" "}
-                                  <span style={{ color: "red" }}>*</span>Address
-                                </p>
-                                <textarea
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Write Address"
-                                  id="validationDefault05"
-                                  {...register("Address", {
-                                    required: true,
-                                    minLength: 20,
-                                  })}
-                                  rows="1"
-                                ></textarea>
-                              </div>
-                              {errors.Address && (
-                                <p className="errorsMsg">
-                                  Minimum 20 characters required
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">
-                                  <span style={{ color: "red" }}>*</span>City
-                                </p>
-                                <input
-                                  type="text"
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Write City Name"
-                                  id="validationDefault01"
-                                  {...register("City", {
-                                    required: true,
-                                  })}
-                                />
-                              </div>
-
-                              {errors.City && (
-                                <p className="errorsMsg">City Name Required</p>
-                              )}
-                            </div>
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">Street</p>
-                                <input
-                                  type="text"
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Write Street"
-                                  id="validationDefault01"
-                                  {...register("Street", {})}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">Postal Code</p>
-                                <input
-                                  type="number"
-                                  class="form-control Vendor-form-control"
-                                  placeholder="Postal Code"
-                                  id="validationDefault01"
-                                  {...register("Pcode", {
-                                    required: true,
-                                  })}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">
-                                  <span style={{ color: "red" }}>*</span>Country
-                                </p>
-
-                                <select
-                                  className="  form-select Vendor-form-control "
-                                  {...register("Country", {
-                                    required: true,
-                                  })}
-                                >
-                                  <option value="">Select...</option>
-                                  <option value="A">Option A</option>
-                                  <option value="B">Option B</option>
-                                </select>
-                              </div>
-
-                              {errors.Country && (
-                                <p className="errorsMsg">
-                                  Country Name Required
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">
-                                  {" "}
-                                  <span style={{ color: "red" }}>*</span>Mobile
-                                </p>
-                                <input
-                                  type="number"
-                                  class="form-control Vendor-form-control"
-                                  id="validationDefault03"
-                                  placeholder="Enter Mobile number"
-                                  {...register("Mobile", {
-                                    required: true,
-                                    pattern: /^01[35-9]\d{8}/,
-                                    maxLength: 11,
-                                  })}
-                                />
-                              </div>
-                              {errors.Mobile && (
-                                <p className="errorsMsg">
-                                  Please enter valid number
-                                </p>
-                              )}
-                            </div>
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor"> Fax</p>
-                                <input
-                                  type="number"
-                                  class="form-control Vendor-form-control"
-                                  id="validationDefault03"
-                                  placeholder="Enter Fax Number"
-                                  {...register("Fax", {})}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <span class="title_vendor"> Website</span>
-                                <input
-                                  type="text"
-                                  class="form-control Vendor-form-control"
-                                  id="validationDefault03"
-                                  placeholder="Enter Website"
-                                  {...register("Website", {})}
-                                />
-                              </div>
-                            </div>
-                            <div className="col-md-6">
-                              <div class="form-group custom_group">
-                                <p class="title_vendor">Email</p>
-                                <input
-                                  type="email"
-                                  class="form-control Vendor-form-control"
-                                  id="validationDefault03"
-                                  placeholder="Enter Email"
-                                  {...register("Email", {
-                                    pattern: /@/,
-                                    required: true,
-                                  })}
-                                />
-                              </div>
-                              {errors.Email && (
-                                <p className="errorsMsg">
-                                  Email field is required
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                          <div className="">
-                            <div class="form-group custom_group">
-                              <p class="title_vendor">
-                                <span style={{ color: "red" }}>*</span>Id
-                              </p>
-                              <input
-                                type="number"
-                                class="form-control Vendor-form-control"
-                                placeholder="Write Id"
-                                id="validationDefault07"
-                                {...register("id", {
-                                  required: true,
-                                })}
-                              />
-                            </div>
-                            {errors.id && (
-                              <p className="errorsMsg">
-                                Name field is required
-                              </p>
-                            )}
-                          </div>
-                          <div className="SubmitFooter">
-                            <button type="submit" class="Button_success">
-                              <span>Submit</span>
-                            </button>
-                            <button
-                              type="button"
-                              class="Button_Danger1"
-                              data-dismiss="modal"
-                            >
-                              <span> Close</span>
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               {/* table start */}
               {DataLoader && (
                 <>
@@ -574,7 +254,7 @@ const Create_Vendor = () => {
               {DataLoader != true && (
                 <div className="row">
                   <div className="col-md-12">
-                    <div className="table-responsive vendor_table_box">
+                    <div className="table-responsive">
                       <Table
                         className="table-striped"
                         pagination={{
@@ -825,4 +505,4 @@ const Create_Vendor = () => {
   );
 };
 
-export default Create_Vendor;
+export default ServiceOrdered;

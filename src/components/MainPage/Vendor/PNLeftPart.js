@@ -102,7 +102,7 @@ const PNLeftPart = (props) => {
             {" "}
             <i
               class="fa fa-spinner fa-spin fa-3x fa-fw"
-              style={{ color: "green", fontSiz: "20px" }}
+              style={{ color: "#705EBD", fontSiz: "20px" }}
             ></i>
             <span class="sr-only">Loading...</span>
           </p>
@@ -110,7 +110,7 @@ const PNLeftPart = (props) => {
       )}
       {DataLoader == false && (
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-4 ">
             {/* left side option */}
             <div class="card ">
               <div class="card-header text-center">Product Status</div>
@@ -127,25 +127,77 @@ const PNLeftPart = (props) => {
                     onChange={(e) => setSearchStatus(e.target.value)}
                   />
                 </div>
-                {/* onload product services Data */}
-                {notFoundSearch &&
-                  GetSearchData.id == null &&
-                  Provider.slice(0, 10).map((row, index) => (
+                <div className="Product_leftSide_fixed_content">
+                  {/* onload product services Data */}
+                  {notFoundSearch &&
+                    GetSearchData.id == null &&
+                    Provider.slice(0, 10).map((row, index) => (
+                      <a
+                        className="Product_status_wrapper"
+                        href={`#Select${row.id}`}
+                      >
+                        <div
+                          className="card product_card_left_side"
+                          id={
+                            row.id == GetVendorActiveId
+                              ? "Active_Vendor_Status"
+                              : "Vendor_Status"
+                          }
+                          onClick={() => OpenActiveDetails(row.id)}
+                        >
+                          <div className="card-body card_body_custom">
+                            <h6 class="card-title card_title_custom  d-flex justify-content-between">
+                              {" "}
+                              Abc Company{" "}
+                              <p className="checkmark mx-auto">
+                                <i
+                                  class="fa fa-check-circle "
+                                  aria-hidden="true"
+                                ></i>
+                              </p>
+                            </h6>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p className="">
+                                <span class="fw-bold">Service Id:</span>{" "}
+                                {row.id}
+                              </p>
+                              <p class=" color-round text-center">
+                                <span class="fw-bold">Date: </span>03/02/2021
+                              </p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p>
+                                <span class="fw-bold">Status:</span>Pending
+                                <br />
+                              </p>
+                              <p class=" color-round text-center">
+                                <span class="fw-bold">Amount:</span>200000
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* service provide by vendor  end */}
+                        </div>
+                      </a>
+                    ))}
+                  {/*  after searching data found */}
+                  {notFoundSearch && GetSearchData.id != null && (
                     <a
                       className="Product_status_wrapper"
-                      href={`#Select${row.id}`}
+                      href={`#Select${GetSearchData.id}`}
                     >
                       <div
-                        className="card product_card_left_side"
+                        className="card card product_card_left_side"
                         id={
-                          row.id == GetVendorActiveId
+                          GetSearchData.id == GetVendorActiveId
                             ? "Active_Vendor_Status"
                             : "Vendor_Status"
                         }
-                        onClick={() => OpenActiveDetails(row.id)}
+                        onClick={() => OpenActiveDetails(GetSearchData.id)}
                       >
                         <div className="card-body card_body_custom">
-                          <h6 class="card-title card_title_custom  d-flex">
+                          <h6 class="card-title card_title_custom d-flex ">
                             {" "}
                             Abc Company{" "}
                             <p className="checkmark mx-auto">
@@ -156,106 +208,50 @@ const PNLeftPart = (props) => {
                             </p>
                           </h6>
 
-                          <div className="row">
-                            <div className="col-md-6">
-                              <p class="card-text">
-                                <strong>Service Id:</strong>
-                                {row.id}
-                              </p>
-                              <p class="card-text">
-                                {" "}
-                                <strong>Date:</strong>01/2/2010
-                              </p>
-                            </div>
-                            <div className="col-md-6">
-                              <p class="card-text">
-                                <strong>Status:</strong>pending
-                              </p>
-                              <p class="card-text">
-                                {" "}
-                                <strong>Amount:</strong>1000Tk
-                              </p>
-                            </div>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <p className="">
+                              <span class="fw-bold">Service Id:</span>
+                              {GetSearchData.id} <br />
+                            </p>
+                            <p class=" color-round text-center">
+                              <span class="fw-bold">Date: </span>03/02/2021
+                            </p>
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <p>
+                              <span class="fw-bold">Status:</span>Pending
+                              <br />
+                            </p>
+                            <p class=" color-round text-center">
+                              <span class="fw-bold">Amount: </span>200000
+                            </p>
                           </div>
                         </div>
-
                         {/* service provide by vendor  end */}
                       </div>
                     </a>
-                  ))}
-                {/*  after searching data found */}
-                {notFoundSearch && GetSearchData.id != null && (
-                  <a
-                    className="Product_status_wrapper"
-                    href={`#Select${GetSearchData.id}`}
-                  >
-                    <div
-                      className="card card product_card_left_side"
-                      id={
-                        GetSearchData.id == GetVendorActiveId
-                          ? "Active_Vendor_Status"
-                          : "Vendor_Status"
-                      }
-                      onClick={() => OpenActiveDetails(GetSearchData.id)}
-                    >
-                      <div className="card-body card_body_custom">
-                        <h6 class="card-title card_title_custom d-flex">
-                          {" "}
-                          Abc Company{" "}
-                          <p className="checkmark mx-auto">
-                            <i
-                              class="fa fa-check-circle "
-                              aria-hidden="true"
-                            ></i>
-                          </p>
+                  )}
+                  {/* no result found message */}
+                  {!notFoundSearch && (
+                    <div className="Vendor_Status">
+                      <div className="Vendor_Status_heading">
+                        <h6
+                          className="Vendor_Status_heading_h6"
+                          style={{
+                            paddingBottom: "13px",
+                            paddingTop: "10px",
+                            color: " #ea0606",
+                          }}
+                        >
+                          No Result Found
                         </h6>
-
-                        <div className="row">
-                          <div className="col-md-6">
-                            <p class="card-text">
-                              <strong>Service Id:</strong>
-                              {GetSearchData.id}
-                            </p>
-                            <p class="card-text">
-                              {" "}
-                              <strong>Date:</strong>01/2/2010
-                            </p>
-                          </div>
-                          <div className="col-md-6">
-                            <p class="card-text">
-                              <strong>Status:</strong>pending
-                            </p>
-                            <p class="card-text">
-                              {" "}
-                              <strong>Amount:</strong>1000Tk
-                            </p>
-                          </div>
-                        </div>
+                        <p className="checkmark"></p>
                       </div>
+
                       {/* service provide by vendor  end */}
                     </div>
-                  </a>
-                )}
-                {/* no result found message */}
-                {!notFoundSearch && (
-                  <div className="Vendor_Status">
-                    <div className="Vendor_Status_heading">
-                      <h6
-                        className="Vendor_Status_heading_h6"
-                        style={{
-                          paddingBottom: "13px",
-                          paddingTop: "10px",
-                          color: " #ea0606",
-                        }}
-                      >
-                        No Result Found
-                      </h6>
-                      <p className="checkmark"></p>
-                    </div>
-
-                    {/* service provide by vendor  end */}
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>
