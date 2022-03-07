@@ -135,15 +135,15 @@ body {
   padding-right: 1.25em;
   padding-top: 0em;
   padding-bottom: 0em;
-  box-shadow: 0px 4px 5px 2px #456;
+  box-shadow: 0px -3px 3px -1px #acb7c1;
   border-radius: 10px;
 }
 
 .card-header1 {
   /* border: 1px solid #e5e8ea; */
-  padding: 1.2em 0.6em;
+  padding: 1.9em 0.8em;
   margin-bottom: 0.8em;
-  box-shadow: 0px 1px 4px 2px #b0b3b7;
+  box-shadow: 0px 5px 4px -2px #b0b3b7;
   border-radius: 10px;
 }
 .custom-modal .close {
@@ -266,7 +266,7 @@ body {
 }
 #Active_Vendor_Status {
   color: #731313;
-  background: #f2f2f2;
+  background: #fbfbfb;
 }
 
 .Vendor_Status .Vendor_Status_heading {
@@ -346,7 +346,7 @@ body {
   padding: 5px 3px;
   font-weight: 600;
   color: #731313;
-  background: #f2f2f2;
+  background: #fbfbfb;
 }
 .details_vendor_status_data {
   margin-top: 0.3em;
@@ -379,6 +379,15 @@ body {
     height: 300px;
     overflow-y: auto;
   }
+  .card-body1 {
+    flex: 1 1 auto;
+    min-height: 1px;
+
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+  }
   .card-body {
     flex: 1 1 auto;
     min-height: 1px;
@@ -387,5 +396,9 @@ body {
     padding-right: 0.4em;
     padding-top: 0em;
     padding-bottom: 0em;
+  }
+  .card-header1 {
+    padding-bottom: 10px;
+    padding-left: 5px;
   }
 }

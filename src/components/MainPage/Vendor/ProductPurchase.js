@@ -123,7 +123,7 @@ const ProductPurchase = () => {
         <div className="content container-fluid">
           {/* card start */}
           <div class="">
-            <div class="card-header">
+            <div class="card-header1">
               {/* header */}
               <div className="d-flex justify-content-between Page_header_title_search">
                 <h4 className="mt-3">Vendor Product Status</h4>
@@ -138,7 +138,7 @@ const ProductPurchase = () => {
                 </button>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body1">
               {/* left child PNLeftPart Included */}
               <PNLeftPart />
             </div>

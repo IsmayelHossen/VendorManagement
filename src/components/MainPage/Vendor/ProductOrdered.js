@@ -245,7 +245,7 @@ const ProductOrdered = () => {
         <div className="content container-fluid">
           {/* Page Header */}
           <div class="">
-            <div class="card-header">
+            <div class="card-header1">
               <div className="d-flex justify-content-between align-items-center Page_header_title_search">
                 <div>
                   <h5 className="mr-2 text-center">Product Ordered Status</h5>
@@ -267,7 +267,7 @@ const ProductOrdered = () => {
               </div>
               {/* header */}
             </div>
-            <div class="card-body">
+            <div class="card-body1">
               {/* /Page Header */}
 
               {/* table start */}

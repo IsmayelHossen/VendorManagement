@@ -10,7 +10,7 @@ import { ServiceProviders } from "../Vendor/ApiCall";
 import { GetDeleiveryProduct } from "../Vendor/ApiCall";
 import "../../../index.css";
 import "../Vendor/vendor.css";
-
+import Fade from "react-reveal/Fade";
 const PNRightPart = (props) => {
   console.log(props);
   const [Provider, SetProvider] = useState([]);
@@ -56,90 +56,92 @@ const PNRightPart = (props) => {
           data-bs-spy="scroll"
           id={`Select${props.PassVebdor_Active_data}`}
         >
-          <div className="Vendor_Status_right_side">
-            <div className="Vendor_Status_right_side_header">
-              <div class="d-flex justify-content-between align-items-center">
-                <p className="mx-auto pt-2 pb-2">
-                  <strong>Service Id:</strong> {Active_individual_data.id}
-                </p>
-                <p className="mx-auto pt-2 pb-2">
-                  <strong>Date:</strong>01/2/2010
-                </p>
+          <Fade right>
+            <div className="Vendor_Status_right_side">
+              <div className="Vendor_Status_right_side_header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <p className="mx-auto pt-2 pb-2">
+                    <strong>Service Id:</strong> {Active_individual_data.id}
+                  </p>
+                  <p className="mx-auto pt-2 pb-2">
+                    <strong>Date:</strong>01/2/2010
+                  </p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <p className="mx-auto pt-2 pb-2">
+                    <strong>Status:</strong>pending
+                  </p>
+                  <p className="mx-auto pt-2 pb-2">
+                    <strong>Amount:</strong>1000Tk
+                  </p>
+                </div>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <p className="mx-auto pt-2 pb-2">
-                  <strong>Status:</strong>pending
-                </p>
-                <p className="mx-auto pt-2 pb-2">
-                  <strong>Amount:</strong>1000Tk
-                </p>
-              </div>
-            </div>
-            {/* service provide by vendor  end */}
-            <div className="details_vendor_status_data">
-              {/* table status */}
-              <div class="table-responsive ">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Company Name</th>
+              {/* service provide by vendor  end */}
+              <div className="details_vendor_status_data">
+                {/* table status */}
+                <div class="table-responsive ">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Company Name</th>
 
-                      <th>Service Id</th>
-                      <th>Amount</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Active_individual_data && (
-                      <>
-                        <tr>
-                          <td>{Active_individual_data.id}</td>
-                          <td>{Active_individual_data.title}</td>
-                          <td>234</td>
-                          <td>23400</td>
-                          <td>23/05/2021</td>
-                          <td>Status:Pending</td>
-                          <td>
-                            <div className="dropdown dropdown-action text-right">
-                              <a
-                                href="#"
-                                className="action-icon dropdown-toggle"
-                                data-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <i className="material-icons">more_vert</i>
-                              </a>
-                              <div className="dropdown-menu dropdown-menu-right">
+                        <th>Service Id</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Active_individual_data && (
+                        <>
+                          <tr>
+                            <td>{Active_individual_data.id}</td>
+                            <td>{Active_individual_data.title}</td>
+                            <td>234</td>
+                            <td>23400</td>
+                            <td>23/05/2021</td>
+                            <td>Status:Pending</td>
+                            <td>
+                              <div className="dropdown dropdown-action text-right">
                                 <a
-                                  className="dropdown-item "
                                   href="#"
-                                  data-toggle="modal"
-                                  data-target="#Product_update"
-                                  onClick={() =>
-                                    Deleivery_Product_update(
-                                      Active_individual_data.id
-                                    )
-                                  }
+                                  className="action-icon dropdown-toggle"
+                                  data-toggle="dropdown"
+                                  aria-expanded="false"
                                 >
-                                  <i className="fa fa-pencil m-r-5" /> Edit
+                                  <i className="material-icons">more_vert</i>
                                 </a>
-                                <a className="dropdown-item" href="#">
-                                  <i className="fa fa-trash-o m-r-5" /> Delete
-                                </a>
+                                <div className="dropdown-menu dropdown-menu-right">
+                                  <a
+                                    className="dropdown-item "
+                                    href="#"
+                                    data-toggle="modal"
+                                    data-target="#Product_update"
+                                    onClick={() =>
+                                      Deleivery_Product_update(
+                                        Active_individual_data.id
+                                      )
+                                    }
+                                  >
+                                    <i className="fa fa-pencil m-r-5" /> Edit
+                                  </a>
+                                  <a className="dropdown-item" href="#">
+                                    <i className="fa fa-trash-o m-r-5" /> Delete
+                                  </a>
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </>
-                    )}
-                  </tbody>
-                </table>
+                            </td>
+                          </tr>
+                        </>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
+          </Fade>
         </section>
       )}
       {/* Deleivery Product Update */}
