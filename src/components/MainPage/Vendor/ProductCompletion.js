@@ -26,10 +26,10 @@ import {
   OrderedData,
 } from "../Vendor/ApiCall";
 import { array } from "prop-types";
-const ProductOrdered = () => {
+const ProductCompletion = () => {
   const [DataLoader, setDataLoader] = useState(true);
   const [Edit_delete, SetEditDelete] = useState(true);
-  const [Vendor_data, SetVendorData] = useState([]);
+  const [Product_completionData, setProduct_completionData] = useState([]);
   const [Action_button, setActionButton] = useState(false);
   const [EditModal, setEditModa] = useState(false);
   const [ProductOrderedData, setProductOrderedData] = useState([]);
@@ -80,8 +80,7 @@ const ProductOrdered = () => {
 
   // submit vendor create data info
   const onSubmit = (data) => {
-    SetVendorData([...Vendor_data, data]);
-    reset();
+    setProduct_completionData([...Product_completionData, data]);
     console.log(data);
 
     // localStorage.setItem("VendorData", JSON.stringify(Vendor_data));
@@ -125,12 +124,12 @@ const ProductOrdered = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const arrarydata = Vendor_data;
+        const arrarydata = Product_completionData;
         var Values = arrarydata.indexOf(id);
 
         arrarydata.splice(Values, 1);
 
-        SetVendorData([...arrarydata]);
+        setProduct_completionData([...arrarydata]);
       } else {
         swal("Record is not delete!");
       }
@@ -246,12 +245,13 @@ const ProductOrdered = () => {
           {/* Page Header */}
           <div class="">
             <div class="card-header1">
+              <div className="">
+                <h4 className="text-center mx-auto mb-3 text-uppercase">
+                  Product Completion Status
+                </h4>
+              </div>
+              {/* header */}
               <div className="d-flex justify-content-between align-items-center Page_header_title_search">
-                <div>
-                  <h5 className="mr-2 text-center text-uppercase">
-                    Product Ordered Status
-                  </h5>
-                </div>
                 <div
                   class="form-group has-search"
                   style={{ marginBottom: "0px" }}
@@ -266,28 +266,199 @@ const ProductOrdered = () => {
                     onChange={(e) => setSearchStatus(e.target.value)}
                   />
                 </div>
+                <button
+                  type="button"
+                  class="Button_success float-right"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  <i class="fa fa-plus"></i> <span>Add File</span>
+                </button>
               </div>
-              {/* header */}
             </div>
             <div class="card-body1">
-              {/* /Page Header */}
+              {/* add file modal start */}
+              <div
+                class="modal custom-modal fade "
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 style={{ color: "rgba(17, 123, 108, 0.85)" }}>
+                        <i class="fa fa-plus"></i> Add Completion File
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body ">
+                      <div className="row Product_add">
+                        {/* vendor form */}
+                        <form
+                          onSubmit={handleSubmit(onSubmit)}
+                          className="mt-2"
+                        >
+                          <div className="mb-2 row  ">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              Company/Person Name
+                              <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                class="form-control Vendor-form-control"
+                                placeholder="Company/Person Name"
+                                id="validationDefault01"
+                                {...register("CompanyName", {
+                                  required: true,
+                                })}
+                              />
+                            </div>
+                          </div>
 
-              {/* table start */}
-              {DataLoader && (
-                <>
-                  {/* DataLoader */}
-                  <p className="text-center mt-5">
-                    {" "}
-                    <i
-                      class="fa fa-spinner fa-spin fa-3x fa-fw"
-                      style={{ color: "green", fontSiz: "20px" }}
-                    ></i>
-                    <span class="sr-only">Loading...</span>
-                  </p>
-                </>
-              )}
-              {DataLoader != true && (
-                <div className="row">
+                          <input
+                            style={{ display: " none" }}
+                            value={"abc"}
+                            {...register("Fake", {})}
+                          />
+                          <input
+                            style={{ display: " none" }}
+                            value={"1234"}
+                            {...register("id", {})}
+                          />
+
+                          <div className="mb-2 row  ">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              Product Name
+                              <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                class="form-control Vendor-form-control"
+                                placeholder="Product Title"
+                                id="validationDefault01"
+                                {...register("Product_Name", {
+                                  required: true,
+                                })}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row  ">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              Purchasing Date
+                              <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-8">
+                              <input
+                                class="form-control Vendor-form-control"
+                                placeholder="Write Contact Title"
+                                id="validationDefault01"
+                                type="date"
+                                {...register("Purchasing_date", {
+                                  required: true,
+                                })}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row  ">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              Completion Date
+                              <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-8">
+                              <input
+                                class="form-control Vendor-form-control"
+                                placeholder="Write Contact Title"
+                                id="validationDefault01"
+                                type="date"
+                                {...register("Completion_date", {
+                                  required: true,
+                                })}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-3 row  ">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              Upload File
+                              <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-8">
+                              <input
+                                type="file"
+                                class="form-control Vendor-form-control"
+                                id="file"
+                                placeholder="Upload"
+                                {...register("file")}
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            className="SubmitFooter"
+                            style={{ marginTop: "10px" }}
+                          >
+                            <button type="submit" class="Button_success">
+                              <span>Submit</span>
+                            </button>
+                            <button
+                              type="button"
+                              class="Button_Danger1"
+                              data-dismiss="modal"
+                            >
+                              <span> Close</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* add file modal end */}
+
+              {/* /Page Header */}
+              <div className="row">
+                {/* table start */}
+                {DataLoader && (
+                  <>
+                    {/* DataLoader */}
+                    <p className="text-center mt-5">
+                      {" "}
+                      <i
+                        class="fa fa-spinner fa-spin fa-3x fa-fw"
+                        style={{ color: "green", fontSiz: "20px" }}
+                      ></i>
+                      <span class="sr-only">Loading...</span>
+                    </p>
+                  </>
+                )}
+                {DataLoader != true && (
                   <div className="col-md-12">
                     <div className="table-responsive">
                       <Table
@@ -313,9 +484,8 @@ const ProductOrdered = () => {
                       />
                     </div>
                   </div>
-                </div>
-              )}
-
+                )}
+              </div>
               {/* update vendor modal start */}
 
               <div
@@ -545,4 +715,4 @@ const ProductOrdered = () => {
   );
 };
 
-export default ProductOrdered;
+export default ProductCompletion;

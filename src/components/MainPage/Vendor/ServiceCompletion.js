@@ -16,12 +16,7 @@ import PNRightPart from "./PNRightPart";
 import { API_URL } from "./CommonUrlApi";
 import BBALOGO from "../../assets/img/BBA-logo.png";
 import Fade from "react-reveal/Fade";
-const ServicePurchase = () => {
-  useEffect(() => {
-    if (4 == 5) {
-      window.location.href = "/vendor/service/status";
-    }
-  }, []);
+const ProductPurchase = () => {
   const [Edit_delete, SetEditDelete] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
   const [isDelete, setIsDelete] = useState(true);
@@ -158,7 +153,11 @@ const ServicePurchase = () => {
                         {/* vendor add product form */}
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                          <div class="form-floating mt-2 ">
+                          <div class="  ">
+                            <label for="condition">
+                              <span style={{ color: "red" }}>*</span>
+                              <small>Company/Person</small>
+                            </label>
                             {SelectVendor != 0 && (
                               <>
                                 <input
@@ -172,7 +171,7 @@ const ServicePurchase = () => {
                             {SelectVendor == 0 && (
                               <select
                                 class=" form-control Vendor-form-control"
-                                defaultValue={SelectVendor}
+                                value={SelectVendor}
                                 {...register("Vendor_select", {
                                   onChange: (e) =>
                                     setSelectVendor(e.target.value),
@@ -193,9 +192,13 @@ const ServicePurchase = () => {
                               </select>
                             )}
                           </div>
-                          <div class="form-floating mt-2 ">
+                          <div class="  ">
+                            <label for="condition">
+                              <span style={{ color: "red" }}>*</span>
+                              Category
+                            </label>
                             <select
-                              class="form-select Vendor-form-control"
+                              class="form-control Vendor-form-control"
                               id="select"
                               {...register("Product_Category", {
                                 required: true,
@@ -207,150 +210,116 @@ const ServicePurchase = () => {
                               <option value="Motor Bike">Motor Bike</option>
                               <option value="Monir">Furniture</option>
                             </select>
-                            {errors.Product_Category && (
-                              <label
-                                for="Product_category"
-                                style={{ color: "red" }}
-                              >
-                                Product Category Required
-                              </label>
-                            )}
-                            {errors.Product_Category == null && (
-                              <label for="Product_category">
-                                <span style={{ color: "red" }}>*</span>
-                                Product Category
-                              </label>
-                            )}
                           </div>
-                          <div class="form-floating mt-2">
+                          <div class=" ">
+                            <label for="condition">
+                              <span style={{ color: "red" }}>*</span>
+                              Product Name
+                            </label>
                             <input
                               type="text"
                               class="form-control Vendor-form-control"
-                              placeholder="Write name"
+                              placeholder="Product name"
                               id="Product Name"
                               {...register("Product_name", {
                                 required: true,
                               })}
                             />
-                            {errors.Product_name && (
-                              <label
-                                for="Product Name"
-                                style={{ color: "red" }}
-                              >
-                                Product Name
-                              </label>
-                            )}
-                            {errors.Product_name == null && (
-                              <label for="Product Name">
-                                <span style={{ color: "red" }}>*</span> Product
-                                Name
-                              </label>
-                            )}
                           </div>
-                          <div class="form-floating mt-2 ">
+                          <div class="  ">
+                            <label for="condition">
+                              <span style={{ color: "red" }}>*</span>
+                              Brand Name
+                            </label>
                             <input
                               type="text"
                               class="form-control Vendor-form-control"
-                              placeholder="Write Brand Name"
+                              placeholder=" Brand Name"
                               id="brand"
                               {...register("Product_brand")}
                             />
-                            <label for="model"> Brand Name</label>
                           </div>
-                          <div class="form-floating mt-2 ">
+                          <div class=" ">
+                            <label for="condition">
+                              <span style={{ color: "red" }}>*</span>
+                              Model Name
+                            </label>
                             <input
                               type="text"
                               class="form-control Vendor-form-control"
-                              placeholder="Enter Product Brand"
+                              placeholder="Model Name"
                               id="model"
                               {...register("Product_model", {
                                 required: true,
                               })}
                             />
-                            {errors.Product_model && (
-                              <label for="model" style={{ color: "red" }}>
-                                Model Required
-                              </label>
-                            )}
-                            {errors.Product_model == null && (
-                              <label for="model">
-                                <span style={{ color: "red" }}>*</span> Model
-                                Required
-                              </label>
-                            )}
                           </div>
                           <div className="row">
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class=" ">
+                                <label for="condition">Color</label>
                                 <input
                                   type="text"
                                   class="form-control Vendor-form-control"
-                                  placeholder="Enter Product Color"
+                                  placeholder="Product Color"
                                   id="color"
                                   {...register("Product_color")}
                                 />
-
-                                <label for="color">Color</label>
                               </div>
                             </div>
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class="">
+                                <label for="condition">Discount</label>
                                 <input
                                   type="number"
                                   class="form-control Vendor-form-control"
-                                  placeholder="Enter Product Discount"
+                                  placeholder="Product Discount"
                                   id="dicount"
                                   {...register("Product_discount")}
                                 />
-
-                                <label for="dicount">Dicount</label>
                               </div>
                             </div>
                           </div>
                           <div className="row">
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <label for="condition">
+                                <span style={{ color: "red" }}>*</span>
+                                Quantity Required
+                              </label>
+                              <div class=" ">
                                 <input
                                   type="number"
                                   class="form-control Vendor-form-control"
                                   id="Quantity"
-                                  placeholder="Enter Quantity"
+                                  placeholder=" Quantity"
                                   {...register("Product_quantity", {
                                     required: true,
                                   })}
                                 />
-                                {errors.quantity && (
-                                  <label
-                                    for="Quantity"
-                                    style={{ color: "red" }}
-                                  >
-                                    Quantity Required
-                                  </label>
-                                )}
-                                {errors.quantity == null && (
-                                  <label for="Price">
-                                    <span style={{ color: "red" }}>*</span>
-                                    quantity
-                                  </label>
-                                )}
                               </div>
                             </div>
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class=" ">
+                                <label for="condition">
+                                  Receiving Quantity
+                                </label>
                                 <input
                                   type="number"
                                   class="form-control Vendor-form-control"
                                   id="Received"
-                                  placeholder="Enter Price"
+                                  placeholder=" Price"
                                   {...register("Product_received", {})}
                                 />
-                                <label for="Received">Received quantity</label>
                               </div>
                             </div>
                           </div>
                           <div className="row">
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class=" ">
+                                <label for="condition">
+                                  <span style={{ color: "red" }}>*</span>
+                                  Total cost
+                                </label>
                                 <input
                                   class="form-control Vendor-form-control"
                                   id="Product_amount"
@@ -360,25 +329,11 @@ const ServicePurchase = () => {
                                     required: true,
                                   })}
                                 />
-
-                                {errors.Product_amount && (
-                                  <label
-                                    for="Product_amount"
-                                    style={{ color: "red" }}
-                                  >
-                                    Total Cost
-                                  </label>
-                                )}
-                                {errors.Product_amount == null && (
-                                  <label for="Product_amount">
-                                    <span style={{ color: "red" }}>*</span>{" "}
-                                    Total cost
-                                  </label>
-                                )}
                               </div>
                             </div>
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class=" ">
+                                <label for="condition">Paid Amount</label>
                                 <input
                                   class="form-control Vendor-form-control"
                                   id="Paid_amount"
@@ -386,17 +341,19 @@ const ServicePurchase = () => {
                                   placeholder="Paid Amount"
                                   {...register("Paid_amount", {})}
                                 />
-
-                                <label for="Paid_amount">Paid amount</label>
                               </div>
                             </div>
                           </div>
 
                           <div className="row">
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class="  ">
+                                <label for="condition">
+                                  <span style={{ color: "red" }}>*</span>
+                                  Condition
+                                </label>
                                 <select
-                                  class="form-select Vendor-form-control"
+                                  class="form-control Vendor-form-control"
                                   id="condition"
                                   {...register("Product_condition", {
                                     required: true,
@@ -407,24 +364,14 @@ const ServicePurchase = () => {
 
                                   <option value="Used">Used</option>
                                 </select>
-                                {errors.condition && (
-                                  <label
-                                    for="condition"
-                                    style={{ color: "red" }}
-                                  >
-                                    Required
-                                  </label>
-                                )}
-                                {errors.condition == null && (
-                                  <label for="condition">
-                                    <span style={{ color: "red" }}>*</span>
-                                    Condition
-                                  </label>
-                                )}
                               </div>
                             </div>
                             <div className="col-md-6">
-                              <div class="form-floating mt-2 ">
+                              <div class="  ">
+                                <label for="Purchasingdate">
+                                  <span style={{ color: "red" }}>*</span>
+                                  Date Required
+                                </label>
                                 <input
                                   class="form-control Vendor-form-control"
                                   id="Purchasingdate"
@@ -433,24 +380,12 @@ const ServicePurchase = () => {
                                     required: true,
                                   })}
                                 />
-                                {errors.Product_date && (
-                                  <label
-                                    for="Purchasingdate"
-                                    style={{ color: "red" }}
-                                  >
-                                    Date Required
-                                  </label>
-                                )}
-                                {errors.Product_date == null && (
-                                  <label for="Purchasingdate">
-                                    <span style={{ color: "red" }}>*</span> Date
-                                  </label>
-                                )}
                               </div>
                             </div>
                           </div>
 
-                          <div class="form-floating mt-2 ">
+                          <div class="  ">
+                            <label for="Product_details">Product Details</label>
                             <textarea
                               class="form-control Vendor-form-control"
                               placeholder="Product Details"
@@ -458,28 +393,23 @@ const ServicePurchase = () => {
                               id="Product_details"
                               style={{ height: "70px" }}
                             ></textarea>
-                            <label for="Product_details">Product Details</label>
                           </div>
 
-                          <div class="form-floating mt-2 ">
+                          <div class="form-control mt-2 ">
                             <input
                               type="file"
-                              class="form-control Vendor-form-control"
+                              class=" Vendor-form-control"
                               id="file"
                               placeholder="Upload"
                               {...register("file")}
                             />
                           </div>
-                          <div class="form-floating">
-                            <textarea
-                              class="form-control"
-                              placeholder="Leave a comment here"
-                              id="floatingTextarea"
-                            ></textarea>
-                            <label for="floatingTextarea">Comments</label>
-                          </div>
-                          <div class="form-floating d-grid  mt-2 mb-2">
-                            <button type="submit" class="Button_success ">
+
+                          <div class="   mt-2 mb-2">
+                            <button
+                              type="submit"
+                              class="Button_success btn-block "
+                            >
                               Add
                             </button>
                           </div>
@@ -560,24 +490,13 @@ const ServicePurchase = () => {
                         </div>
                         {Vendor_data.length != 0 && (
                           <form onSubmit={handleSubmit1(FinalSubmit)}>
-                            <button
-                              type="submit"
-                              class="Button_success float-right ml-4 mt-2"
-                            >
-                              Final Submit
-                            </button>
+                            <div className="text-center">
+                              <button type="submit" class="Button_primary mt-5">
+                                Final Submit
+                              </button>
+                            </div>
                           </form>
                         )}
-                      </div>
-
-                      <div style={{ marginTop: "10px" }}>
-                        <button
-                          type="button"
-                          class="Button_Danger1 float-right "
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -592,4 +511,4 @@ const ServicePurchase = () => {
   );
 };
 
-export default ServicePurchase;
+export default ProductPurchase;

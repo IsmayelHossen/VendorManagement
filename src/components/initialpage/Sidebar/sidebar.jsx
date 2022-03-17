@@ -60,7 +60,11 @@
                   Product Ordered 
                   </Link>
                 </li>
-                
+                <li>
+                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/product/completion">
+                  Product Completion
+                  </Link>
+                </li>
                
 
                
@@ -84,13 +88,20 @@
                     Service Ordered
                   </Link>
                 </li>
+                <li>
+                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/completion">
+                    Service Completion
+                  </Link>
+                </li>
+               
                
 
                
               </ul>
             </li>
             
-           
+        
+            
           </ul>
         </div>
       </div>

@@ -1,6 +1,7 @@
 .App {
   text-align: justify;
 }
+/* whole background color change start */
 body {
   margin: 0;
   color: rgba(0, 0, 0, 0.85);
@@ -10,9 +11,15 @@ body {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-variant: tabular-nums;
   line-height: 1.5715;
-  background-color: #fff;
+
+  background-color: #eeeeee;
+
   font-feature-settings: "tnum", "tnum";
 }
+.modal-content {
+  background-color: #eeeeee;
+}
+/* whole background color change end */
 /* create vendor css */
 .form-control,
 .form-select {
@@ -79,8 +86,8 @@ body {
   line-height: 1.5;
   border-radius: 0.25rem;
   background: #415e9b;
-  margin-left: 0.4em;
-  margin-right: 0.4em;
+  /* margin-left: 0.4em; */
+  /* margin-right: 0.4em; */
 }
 .Button_success:hover {
   background: #415e9b;
@@ -126,13 +133,19 @@ body {
   box-shadow: 0px -12px 9px 0px #e3dedb;
   border-radius: 10px;
   /* background-image: linear-gradient(to right, #f9f9f9 , #fdfdfd,#f4f4f4); */
+  margin: 0 auto;
+  display: block;
+  /* margin-top: ; */
+  /* padding-top: .4em; */
+  /* padding-left: ; */
+  padding: 0.6em;
 }
 .card-body1 {
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 1.25rem;
-  padding-left: 1.25em;
-  padding-right: 1.25em;
+  /* padding: 1.25rem; */
+  padding-left: 0.4em;
+  padding-right: 0.4em;
   padding-top: 0em;
   padding-bottom: 0em;
   box-shadow: 0px -3px 3px -1px #acb7c1;
@@ -174,7 +187,7 @@ body {
 }
 .SubmitFooter {
   display: flex;
-  max-width: 300px;
+  max-width: 130px;
   margin: 0 auto;
 }
 .SubmitFooter .custombtn {
@@ -186,14 +199,8 @@ body {
 }
 /* end */
 .errorsMsg {
-  margin: 0 auto;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  /* display: block; */
-  margin-top: -14px;
-  /* margin-bottom: 5px; */
-  /* text-align: center; */
   color: red;
+  padding-left: 20px;
 }
 .Purchase_Left_Side {
   border-right: 1px solid #eaeaea;
@@ -228,6 +235,7 @@ body {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 0.4em;
+  background: #f9f9f9;
 }
 .card_title_custom {
   color: #930909;
@@ -265,7 +273,7 @@ body {
   background: #fff;
 }
 #Active_Vendor_Status {
-  color: #731313;
+  color: #137373;
   background: #fbfbfb;
 }
 
@@ -345,11 +353,16 @@ body {
   box-shadow: 0px 1px 2px #8c8d91;
   padding: 5px 3px;
   font-weight: 600;
-  color: #731313;
+  color: #1d6c6c;
   background: #fbfbfb;
 }
 .details_vendor_status_data {
   margin-top: 0.3em;
+}
+/* product history details */
+.product_history_details tbody,
+th {
+  padding-right: 41px;
 }
 /* media design */
 @media only screen and (max-width: 600px) {
@@ -383,8 +396,8 @@ body {
     flex: 1 1 auto;
     min-height: 1px;
 
-    padding-left: 0.4em;
-    padding-right: 0.4em;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
     padding-top: 0em;
     padding-bottom: 0em;
   }
@@ -400,5 +413,17 @@ body {
   .card-header1 {
     padding-bottom: 10px;
     padding-left: 5px;
+  }
+  .Button_primary:hover span,
+  .Button_success:hover span,
+  .Button_Danger1:hover span {
+    padding-right: 0px;
+  }
+  .Button_success:hover {
+    background: #415e9b;
+    border: 1px solid #323e6f;
+    /* border-radius: 51px; */
+    box-shadow: 0x 1px 2x #455;
+    box-shadow: 0px 2px 3px #2a435b;
   }
 }

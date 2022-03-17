@@ -1,7 +1,7 @@
 /**
- * Signin Firebase
+ * Product Purchase Left Side
  */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -13,6 +13,7 @@ import "../Vendor/vendor.css";
 import PNRightPart from "./PNRightPart";
 import { API_URL } from "./CommonUrlApi";
 import Fade from "react-reveal/Fade";
+import axios from "axios";
 const PNLeftPart = (props) => {
   const [DataLoader, setDataLoader] = useState(true);
   const [Provider, SetProvider] = useState([]);
@@ -24,7 +25,7 @@ const PNLeftPart = (props) => {
   const [GetVendorActiveId, setGetVendorActiveId] = useState("");
   const [searchStatus, setSearchStatus] = useState("");
   const [GetSearchData, setGetSearchData] = useState({});
-  const [notFoundSearch, setnotFoundSearch] = useState(true);
+  const [notFoundSearch, setnotFoundSearch] = useState(false);
   /**for primarilly get service proveder data */
   useEffect(() => {
     console.log(props.id);
@@ -56,6 +57,7 @@ const PNLeftPart = (props) => {
     // alert(id);
     setGetVendorActiveId(id);
     setVendorStatus_details_open(true);
+    console.log("hello");
   };
   //search functionality
   useEffect(() => {
@@ -71,54 +73,68 @@ const PNLeftPart = (props) => {
         .then(
           (vendors) => {
             setGetSearchData(vendors);
-            GetServiceProviderData();
-            setnotFoundSearch(true);
+            // GetServiceProviderData();
+            setnotFoundSearch(false);
           },
 
           (err) => {
             console.log(err);
-            setnotFoundSearch(false);
+            setnotFoundSearch(true);
           }
         );
     };
     getUsers();
   }, [searchStatus]);
-  // const SearchDataFunction = async (e) => {
-  //   setSearchStatus(e.target.value);
-  //   if (e.target.value.length > 0) {
-  //     const response = await SearchDataFromApi(e.target.value);
-  //     setGetSearchData(response.data);
-
-  //     console.log(response.data);
-  //   } else {
-  //     GetServiceProviderData();
-  //   }
-  // };
+  //using axios
+  // useEffect(() => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/posts")
+  //     .then((response) => console.log(response.data))
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
   return (
     <>
-      {DataLoader && (
-        <>
-          {/* DataLoader */}
-          <p className="text-center mt-5">
-            {" "}
-            <i
-              class="fa fa-spinner fa-spin fa-3x fa-fw"
-              style={{ color: "#705EBD", fontSiz: "20px" }}
-            ></i>
-            <span class="sr-only">Loading...</span>
-          </p>
-        </>
-      )}
-      {DataLoader == false && (
-        <div className="row ">
-          <Fade left>
+      <div className="row ">
+        {DataLoader && (
+          <>
+            {/* DataLoader */}
+            <div className="text-center">
+              <p className="text-center mt-5">
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-secondary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-success" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </p>
+            </div>
+          </>
+        )}
+        {DataLoader == false && (
+          <>
             <div className="col-md-4 mt-2 mb-2 ">
               {/* left side option */}
               <div class="card ">
-                <div class="card-header text-center">Product Status</div>
+                <div
+                  class="card-header text-center"
+                  style={{ background: "#F7F7F7" }}
+                >
+                  Product Status
+                </div>
                 <div class="card-body card_body_custom">
                   {/* Search functionality */}
-                  <div class="form-group has-search">
+                  <div class="form-group has-search ">
                     <span class="fa fa-search form-control-feedback"></span>
                     <input
                       type="text"
@@ -131,8 +147,8 @@ const PNLeftPart = (props) => {
                   </div>
                   <div className="Product_leftSide_fixed_content">
                     {/* onload product services Data */}
-                    {notFoundSearch &&
-                      GetSearchData.id == null &&
+                    {notFoundSearch == false &&
+                      searchStatus == "" &&
                       Provider.slice(0, 10).map((row, index) => (
                         <a
                           className="Product_status_wrapper"
@@ -184,7 +200,7 @@ const PNLeftPart = (props) => {
                         </a>
                       ))}
                     {/*  after searching data found */}
-                    {notFoundSearch && GetSearchData.id != null && (
+                    {notFoundSearch == false && searchStatus !== "" && (
                       <a
                         className="Product_status_wrapper"
                         href={`#Select${GetSearchData.id}`}
@@ -234,7 +250,7 @@ const PNLeftPart = (props) => {
                       </a>
                     )}
                     {/* no result found message */}
-                    {!notFoundSearch && (
+                    {notFoundSearch && (
                       <div className="Vendor_Status">
                         <div className="Vendor_Status_heading">
                           <h6
@@ -257,16 +273,17 @@ const PNLeftPart = (props) => {
                 </div>
               </div>
             </div>
-          </Fade>
-          <div className="col-md-8 mt-2 mb-2">
-            {/* right product status */}
-            <PNRightPart
-              PassVebdor_Active_data={GetVendorActiveId}
-              openRighhtSideData={vendorStatus_details_open}
-            />
-          </div>
-        </div>
-      )}
+
+            <div className="col-md-8 mt-2 mb-2">
+              {/* right product status */}
+              <PNRightPart
+                PassVebdor_Active_data={GetVendorActiveId}
+                openRighhtSideData={vendorStatus_details_open}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

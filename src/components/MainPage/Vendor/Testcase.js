@@ -1,36 +1,100 @@
-// import React, { useCallback, useEffect } from "react";
-// import { useForm, setValue, useFieldArray } from "react-hook-form";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import React, { useEffect, useRef, useState } from "react";
+const Testcase = () => {
+  const [userData, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchReslt, setSearchReslt] = useState([]);
+  const [date1, setdate1] = useState(0);
+  const [name, setName] = useState("");
+  const [time1, settime1] = useState(true);
+  const inputElement = useRef();
+  useEffect(() => {
+    // getData();
+    const intervel = setInterval(() => {
+      let d = new Date();
+      let text = d.toLocaleTimeString();
+      setdate1(text);
+    }, 1000);
 
-// const Testcase = () => {
-//   const { replace } = useFieldArray({ name: "test" });
-//   const {
-//     register,
-//     handleSubmit,
-//     watch,
-//     formState: { errors },
-//   } = useForm();
-//   const onSubmit = (data) => {
-//     replace([{ data: "test" }]);
-//     setValue("email", "ismayelhossen@", { shouldValidate: true });
-//     console.log(data);
-//   };
+    return () => {
+      console.log("hide");
+      clearInterval(intervel);
+    };
+  }, []);
+  const clock = () => {
+    let d = new Date();
+    let text = d.toLocaleTimeString();
+    setdate1(text);
+    // console.log(date.toLocaleString());
+  };
 
-//   console.log(watch("example"));
+  const handlefilter = (e) => {
+    //alert(search);
+    // setSearch(e.target.value);
+    inputElement.current.focus();
+    const search1 = e.target.value;
+    const searchResult = userData.filter((value) => {
+      return value.title.toLowerCase().includes(search1.toLowerCase());
+    });
+    if (search1 === "") {
+      /// setSearchReslt([]);
+      getData();
+    } else {
+      setData(searchResult);
+    }
+  };
+  const getData = () => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => {
+        // You have to send it, as I have done below
+        if (res.status >= 400) {
+          throw new Error("Server responds with error!");
+        }
+        return res.json();
+      })
+      .then(
+        (vendors) => {
+          setData(vendors);
+          console.log(vendors);
+        },
 
-//   return (
-//     <div className="page-wrapper">
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         {/* register your input into the hook by invoking the "register" function */}
-//         <input defaultValue="test" {...register("example")} />
+        (err) => {
+          console.log(err);
+          // setnotFoundSearch(false);
+        }
+      );
+  };
+  const hidetime = () => {
+    settime1(!time1);
+  };
+  let abc = "hello";
+  return (
+    <>
+      {abc && console.log(abc + Math.random())}
+      {/* Header */}
+      <div className="page-wrapper">
+        {/* Page Content */}
+        <div className="content container-fluid">
+          <button onClick={() => hidetime()}>
+            {time1 ? "Stop time" : "show time"}
+          </button>
+          {time1 && date1}
 
-//         {/* include validation with required or other standard HTML validation rules */}
-//         <input {...register("exampleRequired", { required: true })} />
-//         {/* errors will return when field validation fails  */}
-//         {errors.exampleRequired && <span>This field is required</span>}
+          <form>
+            <input
+              ref={inputElement}
+              type="text"
+              onChange={(e) => handlefilter(e)}
+            />
+          </form>
+          {userData.length != 0 &&
+            userData.map((row, index) => <p>{row.title}</p>)}
+        </div>
+        <input value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
 
-//         <input type="submit" />
-//       </form>
-//     </div>
-//   );
-// };
-// export default Testcase;
+      {}
+    </>
+  );
+};
+export default Testcase;
