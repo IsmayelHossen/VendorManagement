@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 import {headerlogo, Avatar_02,Avatar_03,Avatar_05,
   Avatar_06,Avatar_08,Avatar_09,Avatar_13,Avatar_17,Avatar_21} from '../../Entryfile/imagepath'
-import { useLocation } from 'react-router-dom';
+
 import '../../assets/js/app';
 
 
@@ -19,6 +19,7 @@ const Header = ()=>{
     }
       return (
          <div>
+           {pathname!="/vendor/login" && pathname!="/vendor/signup" &&(
            <div>
               <div className="header" style={{right:"0px"}}>
                 {/* Logo */}
@@ -274,6 +275,7 @@ const Header = ()=>{
                 {/* /Mobile Menu */}
               </div>
             </div>
+            )}
          </div>
        
       );

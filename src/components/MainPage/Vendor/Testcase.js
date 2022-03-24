@@ -9,7 +9,7 @@ const Testcase = () => {
   const [time1, settime1] = useState(true);
   const inputElement = useRef();
   useEffect(() => {
-    // getData();
+    getData();
     const intervel = setInterval(() => {
       let d = new Date();
       let text = d.toLocaleTimeString();

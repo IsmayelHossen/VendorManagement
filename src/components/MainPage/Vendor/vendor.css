@@ -364,6 +364,11 @@ body {
 th {
   padding-right: 41px;
 }
+.sidebar-menu ul ul a.active {
+  color: #fff;
+  text-decoration: none;
+  background: #516273;
+}
 /* media design */
 @media only screen and (max-width: 600px) {
   .create_vendor_page_title {
@@ -427,3 +432,10 @@ th {
     box-shadow: 0px 2px 3px #2a435b;
   }
 }
+
+/* @media print {
+  #hddd {
+    color: red;
+    background-color: blue;
+  }
+} */

@@ -52,9 +52,9 @@ const linechartdata = [
   { y: "2011", "Total Sales": 75, "Total Revenue": 65 },
   { y: "2012", "Total Sales": 100, "Total Revenue": 50 },
 ];
-const Dashboard = () => {
+const Dashboard = (props) => {
   const reloadCount = Number(sessionStorage.getItem("reloadCount")) || 0;
-
+  console.log(props);
   useEffect(() => {
     if (reloadCount < 1) {
       sessionStorage.setItem("reloadCount", String(reloadCount + 1));
@@ -78,7 +78,9 @@ const Dashboard = () => {
           <div className="page-header">
             <div className="row">
               <div className="col-sm-12">
-                <h3 className="page-title text-start">Welcome To Store!</h3>
+                <h3 className="page-title text-start">
+                  Welcome To Store!{props.name}
+                </h3>
               </div>
             </div>
           </div>

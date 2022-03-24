@@ -21,6 +21,7 @@ const ProductPurchase = () => {
   const [Vendor_data, SetVendorData] = useState([]);
   const [isDelete, setIsDelete] = useState(true);
   const [SelectVendor, setSelectVendor] = useState("");
+
   const [vendorStatus_details_open, setVendorStatus_details_open] =
     useState(false);
   const [GetVendorActiveData, setGetVendorActiveData] = useState({});
@@ -46,7 +47,7 @@ const ProductPurchase = () => {
     SetVendorData([...Vendor_data, data]);
     console.log(SelectVendor);
     console.log(data);
-    reset();
+    //reset();
 
     //  alert();
   };
@@ -62,8 +63,8 @@ const ProductPurchase = () => {
     }).then((willDelete) => {
       if (willDelete) {
         const arrarydata = Vendor_data;
-        var Values = arrarydata.indexOf(index);
-
+        // var Values = arrarydata.indexOf(index);
+        alert(index);
         arrarydata.splice(index, 1);
 
         SetVendorData([...arrarydata]);
@@ -152,7 +153,10 @@ const ProductPurchase = () => {
                       <div className="col-md-4">
                         {/* vendor add product form */}
 
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form
+                          onSubmit={handleSubmit(onSubmit)}
+                          enctype="multipart/form-data"
+                        >
                           <div class="form-floating mt-2 ">
                             {SelectVendor != 0 && (
                               <>
@@ -171,9 +175,11 @@ const ProductPurchase = () => {
                                 {...register("Vendor_select", {
                                   onChange: (e) =>
                                     setSelectVendor(e.target.value),
+                                  required: true,
                                 })}
                               >
                                 <>
+                                  <option value="">Select.....</option>
                                   <option value="Abc Company">
                                     Abc Company
                                   </option>
@@ -186,6 +192,20 @@ const ProductPurchase = () => {
                                   <option value="Monir">Monir</option>
                                 </>
                               </select>
+                            )}
+                            {errors.Vendor_select && (
+                              <label
+                                for="Vendor_select"
+                                style={{ color: "red" }}
+                              >
+                                Vendor Required
+                              </label>
+                            )}
+                            {errors.Vendor_select == null && (
+                              <label for="Vendor_select">
+                                <span style={{ color: "red" }}>*</span>
+                                Vendor
+                              </label>
                             )}
                           </div>
                           <div class="form-floating mt-2 ">
@@ -463,6 +483,7 @@ const ProductPurchase = () => {
                               id="file"
                               placeholder="Upload"
                               {...register("file")}
+                              multiple
                             />
                           </div>
 

@@ -26,19 +26,24 @@
   let pathname = location.pathname;
 
   return (
+    <>
+    {/* for login and signup page conditions are given here */}
+    {pathname!='/vendor/login' && pathname!='/vendor/signup' &&(
+     
+  
       <div className="sidebar" id="sidebar">
       <div className="sidebar-inner slimscroll">
         <div id="sidebar-menu" className="sidebar-menu">
           <ul>
             <li className={pathname.includes('/') ?"active" :""}> 
-              <Link to = "/"><i className="la la-home" /> <span> Dashboard</span></Link>
+              <Link to = "/vendor/add"><i className="la la-home" /> <span> Dashboard</span></Link>
             </li>
                 {/* add Vendor */}
                 <li className="submenu text-start">
               <a href="#"><i className="la la-gift" /> <span> Vendor</span> <span className="menu-arrow" /></a>
               <ul style={{display: 'none'}}>
               <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/add">
+                  <Link className={pathname.includes('/vendor/add') ?"active" :""} to="/vendor/add">
                   Add  Vendor
                   </Link>
                 </li>
@@ -51,17 +56,17 @@
               <ul style={{display: 'none'}}>
               
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/product/status">
+                  <Link className={pathname.includes('/vendor/product/status') ?"active" :""} to="/vendor/product/status">
                    Add Product 
                   </Link>
                 </li>
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/product/order">
+                  <Link className={pathname.includes('/vendor/product/order') ?"active" :""} to="/vendor/product/order">
                   Product Ordered 
                   </Link>
                 </li>
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/product/completion">
+                  <Link className={pathname.includes('/vendor/product/completion') ?"active" :""} to="/vendor/product/completion">
                   Product Completion
                   </Link>
                 </li>
@@ -79,17 +84,17 @@
               
                 
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/status">
+                  <Link className={pathname.includes('/vendor/service/status') ?"active" :""} to="/vendor/service/status">
                    Add Service 
                   </Link>
                 </li>
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/order">
+                  <Link className={pathname.includes('/vendor/service/order') ?"active" :""} to="/vendor/service/order">
                     Service Ordered
                   </Link>
                 </li>
                 <li>
-                  <Link className={pathname.includes('/vendor') ?"active" :""} to="/vendor/service/completion">
+                  <Link className={pathname.includes('/vendor/service/completion') ?"active" :""} to="/vendor/service/completion">
                     Service Completion
                   </Link>
                 </li>
@@ -106,7 +111,8 @@
         </div>
       </div>
     </div>
-     
+      )}
+    </>
     );
  
 }

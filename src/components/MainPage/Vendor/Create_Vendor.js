@@ -6,6 +6,8 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+
 /**
  * for paginationn and data table
  */
@@ -25,7 +27,7 @@ import {
   GetVendor_individualData_update,
   VendorInfoData,
 } from "../Vendor/ApiCall";
-import axios from "axios";
+
 const Create_Vendor = () => {
   const [DataLoader, setDataLoader] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
@@ -33,6 +35,7 @@ const Create_Vendor = () => {
   const [search_vendor_data, setsearch_vendor_data] = useState("");
   const [UpdateDataFound, setUpdateDataFound] = useState({});
   const [usedatafromApi, setusedatafromApi] = useState({});
+  const [vendorDeleteId, setvendorDeleteId] = useState("");
 
   useEffect(() => {
     document.title = "Vendor Add form";
@@ -41,7 +44,8 @@ const Create_Vendor = () => {
   const VendorInfo = async () => {
     const reponse = await VendorInfoData();
     setVendorInfo(reponse.data);
-    //console.log(reponse.data);
+    // console.log(Vendor_Info);
+    console.log(reponse.Headers);
   };
   const {
     register,
@@ -54,30 +58,43 @@ const Create_Vendor = () => {
     reset: reset1,
     register: register1,
     handleSubmit: handleSubmit1,
-    formState: {
-      errors: errors2,
-      isDirty: isDirty1,
-      isSubmitting: isSubmitting1,
-    },
-  } = useForm({
-    defaultValues: {},
-  });
+    formState: { errors: errors2 },
+  } = useForm();
 
-  // submit vendor create data info
+  // submit for store vendor  data info
   const onSubmit = (data) => {
-    SetVendorData([...Vendor_data, data]);
-    reset();
+    axios
+      .post("http://localhost:4328/vendor/add_vendor", data, {
+        headers: {
+          "Content-Type": "application/json",
+          name: "ismayel",
+          Email: "ismayelhossen123@gmail.com",
+        },
+      })
+      .then((response) => {
+        if (response.data.success) {
+          VendorInfo();
+          window.$("#exampleModal").modal("hide");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // SetVendorData([...Vendor_data, data]);
+    //  reset();
     console.log(data);
 
     // localStorage.setItem("VendorData", JSON.stringify(Vendor_data));
   };
 
   //edit vendor data
+
   const EditIndividual_vendor = async (id) => {
     if (id) {
       // setIndividual_data(id);
       const response = await GetVendor_individualData_update(id);
       if (response) {
+        console.log(id);
         setUpdateDataFound(response.data[0]);
         // console.log(response.data[0]);
 
@@ -85,38 +102,130 @@ const Create_Vendor = () => {
       }
     }
   };
-  const onSubmitUpdate = (data) => {
-    if (data) {
-      swal({
-        title: "Updated Successfully!",
-
-        icon: "success",
-        button: "Ok!",
-      });
+  const onSubmitUpdate = async (data) => {
+    if (data.CompanyName) {
+      data.CompanyName = data.CompanyName;
+    } else {
+      data.CompanyName = UpdateDataFound.COMPANYNAME;
     }
 
-    console.log(data);
-    console.log(UpdateDataFound);
+    if (data.ContactName) {
+      data.ContactName = data.ContactName;
+    } else {
+      data.ContactName = UpdateDataFound.CONTACTNAME;
+    }
+    if (data.ContactTitle) {
+      data.ContactTitle = data.ContactTitle;
+    } else {
+      data.ContactTitle = UpdateDataFound.CONTACTTITLE;
+    }
+    if (data.Address) {
+      data.Address = data.Address;
+    } else {
+      data.Address = UpdateDataFound.ADDRESS;
+    }
+    if (data.Street) {
+      data.Street = data.Street;
+    } else {
+      data.Street = UpdateDataFound.STREET;
+    }
+    if (data.Pcode) {
+      data.Pcode = data.Pcode;
+    } else {
+      data.Pcode = UpdateDataFound.PCODE;
+    }
+    if (data.City) {
+      data.City = data.City;
+    } else {
+      data.City = UpdateDataFound.CITY;
+    }
+    if (data.Country) {
+      data.Country = data.Country;
+    } else {
+      data.Country = UpdateDataFound.COUNTRY;
+    }
+    if (data.Mobile) {
+      data.Mobile = data.Mobile;
+    } else {
+      data.Mobile = UpdateDataFound.MOBILE;
+    }
+    if (data.Fax) {
+      data.Fax = data.Fax;
+    } else {
+      data.Fax = UpdateDataFound.FAX;
+    }
+    if (data.Fax) {
+      data.Fax = data.Fax;
+    } else {
+      data.Fax = UpdateDataFound.FAX;
+    }
+    if (data.Email) {
+      data.Email = data.Email;
+    } else {
+      data.Email = UpdateDataFound.EMAIL;
+    }
+    if (data.Website) {
+      data.Website = data.Website;
+    } else {
+      data.Website = UpdateDataFound.WEBSITE;
+    }
+    if (data.id) {
+      data.id = data.id;
+    } else {
+      data.id = UpdateDataFound.ID;
+    }
+
+    if (data) {
+      let id = UpdateDataFound.ID;
+      const updateResult = await axios
+        .put(`http://localhost:4328/vendor/vendor/update/${id}`, data)
+        .then((response) => {
+          if (response.data.success) {
+            VendorInfo();
+            swal({
+              title: "Updated Successfully!",
+              icon: "success",
+              button: "Ok!",
+            });
+            reset1();
+            window.$("#vendor_update").modal("hide");
+          }
+        })
+
+        .catch((error) => {
+          console.log(error);
+          console.log(data);
+        });
+    }
+
+    // console.log(UpdateDataFound);
   };
-  //Action edit,delete
-  const Action_bar = (name) => {
-    console.log(name);
-    //setActionButton(true);
-  };
+
   const DeleteIndividual_vendor = (id) => {
+    setvendorDeleteId(id);
+
     swal({
       title: "Are you sure want to delete?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        const arrarydata = Vendor_data;
-        var Values = arrarydata.indexOf(id);
+    }).then(async (result) => {
+      if (result) {
+        // var Values = Vendor_Info.indexOf(id);
 
-        arrarydata.splice(Values, 1);
+        // Vendor_Info.splice(Values, 1);
 
-        SetVendorData([...arrarydata]);
+        // setVendorInfo([...Vendor_Info]);
+        const abc = await axios
+          .delete(`http://localhost:4328/vendor/delete_vendor/${id}`)
+          .then((response) => {
+            if (response.data.success) {
+              VendorInfo();
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
         swal("Record is not delete!");
       }
@@ -129,7 +238,7 @@ const Create_Vendor = () => {
       VendorInfo();
     } else {
       axios
-        .get(`http://localhost:4328/Vendor_search/${search_vendor_data}`)
+        .get(`http://localhost:4328/vendor/Vendor_search/${search_vendor_data}`)
         .then((response) => {
           console.log(response.data);
           setVendorInfo(response.data);
@@ -235,6 +344,7 @@ const Create_Vendor = () => {
 
   return (
     <>
+      {console.log("render344")}
       <Helmet>
         <title>Dashboard - BBA STORE</title>
         <meta name="description" content="BBA STORE" />
@@ -644,7 +754,6 @@ const Create_Vendor = () => {
                 class="modal custom-modal fade "
                 id="vendor_update"
                 tabindex="-1"
-                role="dialog"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
@@ -688,9 +797,8 @@ const Create_Vendor = () => {
                                 type="text"
                                 class="form-control Vendor-form-control"
                                 placeholder=" Company/Person Name"
-                                id="validationDefault01"
                                 defaultValue={UpdateDataFound.COMPANYNAME}
-                                {...register1("CompanyName", {})}
+                                {...register1("CompanyName")}
                               />
                             </div>
                           </div>
@@ -707,9 +815,8 @@ const Create_Vendor = () => {
                                 type="text"
                                 class="form-control Vendor-form-control"
                                 placeholder="Contact Name"
-                                id="validationDefault02"
                                 defaultValue={UpdateDataFound.CONTACTNAME}
-                                {...register1("ContactName", {})}
+                                {...register1("ContactName")}
                               />
                             </div>
                           </div>
@@ -728,8 +835,7 @@ const Create_Vendor = () => {
                                 class="form-control Vendor-form-control"
                                 placeholder="Contact Title"
                                 defaultValue={UpdateDataFound.CONTACTTITLE}
-                                id="validationDefault01"
-                                {...register1("ContactTitle", {})}
+                                {...register1("ContactTitle")}
                               />
                             </div>
                             {/* 
@@ -750,8 +856,6 @@ const Create_Vendor = () => {
                             <div className="col-sm-8">
                               <textarea
                                 class="form-control Vendor-form-control"
-                                placeholder=" Address"
-                                id="validationDefault05"
                                 defaultValue={UpdateDataFound.ADDRESS}
                                 {...register1("Address", {})}
                                 rows="1"
@@ -787,12 +891,12 @@ const Create_Vendor = () => {
                             </label>
                             <div className="col-sm-8">
                               <input
-                                type="number"
+                                type="text"
                                 class="form-control Vendor-form-control"
                                 placeholder="Postal Code"
                                 id="validationDefault01"
-                                defaultValue={UpdateDataFound.PCODE}
                                 {...register1("Pcode", {})}
+                                defaultValue={UpdateDataFound.PCODE}
                               />
                             </div>
                           </div>
@@ -810,8 +914,8 @@ const Create_Vendor = () => {
                                 class="form-control Vendor-form-control"
                                 placeholder="City"
                                 id="validationDefault01"
-                                defaultValue={UpdateDataFound.CITY}
                                 {...register1("City", {})}
+                                defaultValue={UpdateDataFound.CITY}
                               />
                             </div>
                           </div>

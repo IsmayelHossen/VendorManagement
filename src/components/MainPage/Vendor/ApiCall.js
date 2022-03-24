@@ -8,9 +8,11 @@ export const ServiceProviders = async () => {
 };
 // VendorInfoData
 export const VendorInfoData = async () => {
-  return await Axios.get("http://localhost:4328/Vendor_data").then((res) => {
-    return res;
-  });
+  return await Axios.get("http://localhost:4328/vendor/Vendor_data").then(
+    (res) => {
+      return res;
+    }
+  );
 };
 export const GetIndividual_VendorActive_data = async (id) => {
   return await Axios.get(`${API_URL}posts/${id}`).then((res) => {
@@ -23,7 +25,7 @@ export const SearchDataFromApi = async (id) => {
   });
 };
 export const GetVendor_individualData_update = async (id) => {
-  return await Axios.get(`http://localhost:4328/Vendor_data/${id}`).then(
+  return await Axios.get(`http://localhost:4328/vendor/Vendor_data/${id}`).then(
     (res) => {
       return res;
     }
